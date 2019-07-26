@@ -1,0 +1,30 @@
+{
+	"name": "secret-hitler-room-maker",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Abziz/secret-hitler-room-maker.git"
+	},
+	"author": "Abziz",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Abziz/secret-hitler-room-maker/issues"
+	},
+	"homepage": "https://github.com/Abziz/secret-hitler-room-maker#readme",
+	"devDependencies": {
+		"@types/node": "^12.6.8",
+		"@typescript-eslint/eslint-plugin": "^1.13.0",
+		"@typescript-eslint/parser": "^1.13.0",
+		"eslint": "^6.1.0",
+		"nodemon": "^1.19.1",
+		"typescript": "^3.5.3"
+	},
+	"dependencies": {
+		"dotenv": "^8.0.0"
+	}
+}
