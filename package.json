@@ -4,7 +4,10 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"start": "node dist/index.js",
+		"dev": "nodemon src/index.ts",
+		"lint": "eslint --fix src/**",
+		"build": "tsc -p ."
 	},
 	"repository": {
 		"type": "git",
@@ -17,14 +20,20 @@
 	},
 	"homepage": "https://github.com/Abziz/secret-hitler-room-maker#readme",
 	"devDependencies": {
+		"@types/dotenv": "^6.1.1",
 		"@types/node": "^12.6.8",
+		"@types/node-fetch": "^2.5.0",
+		"@types/puppeteer": "^1.19.0",
 		"@typescript-eslint/eslint-plugin": "^1.13.0",
 		"@typescript-eslint/parser": "^1.13.0",
 		"eslint": "^6.1.0",
 		"nodemon": "^1.19.1",
+		"ts-node": "^8.3.0",
 		"typescript": "^3.5.3"
 	},
 	"dependencies": {
-		"dotenv": "^8.0.0"
+		"dotenv": "^8.0.0",
+		"node-fetch": "^2.6.0",
+		"puppeteer": "^1.19.0"
 	}
 }
