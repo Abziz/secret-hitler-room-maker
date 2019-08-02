@@ -13,7 +13,7 @@ export default class SecretHitlerService {
 	private username: string;
 	private password: string;
 	private browser: Browser;
-	private busy = false;
+	public busy = false;
 
 	public constructor(username: string, password: string) {
 		if (!username || !password) {
@@ -44,15 +44,19 @@ export default class SecretHitlerService {
 			await this.setGamePassword(page, config.password);
 			await this.setNumberOfPlayers(page, config.players, config.rebalance);
 			const roomUrl = await this.startGame(page);
-			this.waitForPlayer(page).then(async () => await this.leaveGame(page));
-
+			this.waitForPlayer(page)
+				.then(async () => await this.leaveGame(page))
+				.catch(async () => await this.handleError(page));
 			return roomUrl;
-		} catch {
-			console.error("hmmm");
-			if (!page.isClosed()) {
-				page.close()
-				this.busy = false;
-			}
+		} catch (error) {
+			await this.handleError(page)
+			throw error;
+		}
+	}
+	private async handleError(page) {
+		if (!page.isClosed()) {
+			await page.close()
+			this.busy = false;
 		}
 	}
 	private configIsValid(config: CreateGameConfig) {
@@ -113,11 +117,7 @@ export default class SecretHitlerService {
 	}
 
 	private async waitForPlayer(page: Page) {
-		try {
-			await page.waitForSelector(".player-container:not(:first-child)", { timeout: 60 * 1000 });
-		}
-		catch{
-		}
+		await page.waitForSelector(".player-container:not(:first-child)", { timeout: 60 * 1000 });
 	}
 	private async leaveGame(page: Page) {
 		await page.click(".pointing .right.menu > .item:last-child > .button");
